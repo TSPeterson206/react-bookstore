@@ -26,9 +26,7 @@ filterTitle = (event) => {
   event.preventDefault();
   const searchBar = document.querySelector('.searchBar')
 const findIt = this.state.books.filter(ele => {return ele.author === searchBar.value})
-if(!findIt) {return}
-console.log(findIt)
-if (findIt) {alert(
+if (findIt.length === 1) {alert(
   `Match Found! There is a book by the name of ${findIt[0].title} that is written by ${searchBar.value}`)
 } else {alert(`Sorry, we couldn't find any books written by ${searchBar.value}`)}
 }

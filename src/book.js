@@ -10,8 +10,8 @@ return (
     <span>Pages: {pages}</span><br></br>
     <span>Price: {price}</span>
   </p>
-  <button className="addButton" name={id}>Add To Cart</button>
-  <button className="removeButton" name={id}>Remove From Cart</button>
+  <button className="addButton" dataid={id}>Add To Cart</button>
+  <button className="removeButton" dataid={id}>Remove From Cart</button>
 </div>
     )
   }

@@ -6,12 +6,18 @@ import BookList from './bookList'
 import CheckoutCart from './checkoutCart';
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      cartItems:[]
+    }
+  }
   render() {
     return (
       <div>
       <NavBar />
       <BookList />
-      <CheckoutCart />
       </div>
     );
   }

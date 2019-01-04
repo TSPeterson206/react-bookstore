@@ -4,6 +4,7 @@ import React, {
 import './index.css';
 import axios from 'axios';
 import Book from './book'
+import CheckoutCart from './checkoutCart'
 
 class BookList extends Component {
   constructor(props) {
@@ -41,29 +42,32 @@ class BookList extends Component {
   }
 
   handleAddToCart = (event) => {
-    const id = event.target.getAttribute('name')
+    const id = event.target.getAttribute('dataid')
     const newBook = this.state.books.find(ele => {return ele.id == id})
     newBook.inCart = true;
       this.setState({
         cartItems: [...this.state.cartItems, newBook]
       })
-      console.log(this.state.cartItems)
   }
 
   handleRemoveFromCart = (event) => {
-    const id = event.target.getAttribute('name')
+    const id = event.target.getAttribute('dataid')
     const newBook = this.state.books.find(ele => {return ele.id == id})
     newBook.inCart = false;
     const index = this.state.cartItems.indexOf(newBook)
-    this.state.cartItems.splice(index,1)
-      // this.setState({
-      //   cartItems: this.state.cartItems.splice(index,1)
-      // })
-      console.log(this.state.cartItems)
+    if(index === -1) {return}
+    const updatedCart = this.state.cartItems.filter(ele => {
+      return ele != newBook}
+    )
+      this.setState({
+        cartItems: updatedCart
+      })
   }
 
   render() {
-    return ( <div>
+    return ( <div className="container">
+    <div className="row">
+    <div className="col-9">
       <h2> Please Select A Book </h2> {
         this.state.books.map(ele => {
           return <Book id = {
@@ -87,6 +91,11 @@ class BookList extends Component {
           />
         })
       } </div>
+      <div className="col-3">
+      <CheckoutCart cartItems={this.state.cartItems}/>
+      </div>
+      </div>
+      </div>
     )
   }
 }

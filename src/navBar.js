@@ -24,16 +24,13 @@ class NavBar extends Component {
 
 filterTitle = (event) => {
   event.preventDefault();
-const filtitle = this.state.books.map(ele => {return ele.title})
-console.log(filtitle)
-this.setState({books:filtitle})
-}
-
-filterAuthor = (event) => {
-  event.preventDefault();
-const filtauthor = this.state.books.map(ele => {return ele.author})
-console.log(filtauthor)
-this.setState({books:filtauthor})
+  const searchBar = document.querySelector('.searchBar')
+const findIt = this.state.books.filter(ele => {return ele.author === searchBar.value})
+if(!findIt) {return}
+console.log(findIt)
+if (findIt) {alert(
+  `Match Found! There is a book by the name of ${findIt[0].title} that is written by ${searchBar.value}`)
+} else {alert(`Sorry, we couldn't find any books written by ${searchBar.value}`)}
 }
 
 render (){
@@ -41,33 +38,13 @@ render (){
     <nav className="navbar navbar-dark bg-primary">
   <a className="navbar-brand" href="#">Welcome to the React Bookstore!</a>
   <form onSubmit={this.filterTitle}>
-      <input type="text" placeholder="Search By Title.." name="search"></input>
+      <input type="text" className="searchBar" placeholder="Search By Title.." name="search"></input>
       <button type="submit"></button>
     </form>  
-    <form onSubmit={this.filterAuthor}>
-      <input type="text" placeholder="Search By Author.." name="search"></input>
-      <button type="submit"><i className="fa fa-search"></i></button>
-    </form>
   <select>
     <option>Filter By...</option>
     <option onSelect={this.filterTitle}>Titles Only</option>
     <option onSelect={this.filterAuthor}>Authors Only</option>
-  </select>
-  <select>
-    <option>Filter By Title</option>
-  {
-          this.state.books.map(ele => {
-            return <option value={ele.id}>{ele.title}</option>
-          })
-        }
-  </select>
-  <select>
-  <option>Filter By Author</option>
-  {
-          this.state.books.map(ele => {
-            return <option value={ele.id}>{ele.author}</option>
-          })
-        }
   </select>
 </nav>
   )

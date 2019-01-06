@@ -13,12 +13,7 @@ class BookList extends Component {
     this.state = {
       books: [],
       cartItems:[],
-      editingBook:null,
-      editingId:'',
-      editedTitle:'',
-      editedAuthor:'',
-      editedPages:'',
-      editedPrice:''
+      editingBook:null
     }
   }
 
@@ -82,23 +77,22 @@ addBookHandler = () => {
   
 }
 
-  editBookHandler = (event) => {
-    event.preventDefault();
-console.log()
-// const id = event.target.getAttribute('dataid')
-// axios.put(`http://localhost:8082/api/books/${id}`, {
-  // title: editTitle.value,
-  // author: editAuthor.value,
-  // pages: editPages.value,
-  // price: editPrice.value
+editBookHandler = (event) => {
+  event.preventDefault();
+const id = this.state.editingBook.id
+console.log(this.state.title)
+console.log(this.state.editingBook.author)
+
+
+axios.put(`http://localhost:8082/api/books/${id}`, {
+title: this.state.editingBook.title,
+author: this.state.editingBook.author,
+pages: this.state.editingBook.pages,
+price: this.state.editingBook.price
 }
-
-  handleChange = (event) => {
-    this.setState({
-      [event.target.name] : event.target.value
-    })
-  }
-
+)
+this.getBooks()
+}
   render() {
     return ( <div className="container">
     <div className="row">
@@ -127,7 +121,6 @@ console.log()
           handleDelete = {this.handleDelete}
           handleRemoveFromCart = {this.handleRemoveFromCart}
           handleAddToCart = {this.handleAddToCart}
-          handleChange={this.handleChange}
           />
         })
       } </div>

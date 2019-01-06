@@ -39,11 +39,7 @@ render (){
       <input type="text" className="searchBar" placeholder="Search By Title.." name="search"></input>
       <button type="submit"></button>
     </form>  
-  <select>
-    <option>Filter By...</option>
-    <option onSelect={this.filterTitle}>Titles Only</option>
-    <option onSelect={this.filterAuthor}>Authors Only</option>
-  </select>
+  
 </nav>
   )
 }

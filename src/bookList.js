@@ -6,6 +6,7 @@ import axios from 'axios';
 import Book from './book'
 import CheckoutCart from './checkoutCart'
 import EditForm from './editForm'
+import AddForm from './addForm'
 
 class BookList extends Component {
   constructor(props) {
@@ -13,7 +14,8 @@ class BookList extends Component {
     this.state = {
       books: [],
       cartItems:[],
-      editingBook:null
+      editingBook:null,
+      addingBook:null
     }
   }
 
@@ -52,6 +54,15 @@ class BookList extends Component {
       })
   }
 
+
+  handleAddButton = (id) => {
+    this.setState({
+      addingBook:{}
+    })
+
+  }
+
+
   handleEditButton = (id) => {
     const book = this.state.books.find(ele => {return ele.id == id})
     this.setState({
@@ -73,30 +84,49 @@ const cartAfterDelete = this.state.books.filter(ele => {
 
 // ADD BOOK AND EDIT BOOK HANDLERS
 
-addBookHandler = () => {
-  
+addBookHandler = (newTitle, newAuthor, newPages, newPrice) => {
+console.log(newTitle, newAuthor)
+
+const newBook = {
+  title: newTitle,
+  author: newAuthor,
+  pages: newPages,
+  price: newPrice
+  } 
+  console.log(newBook)
+  console.log(this.state.books)
+axios.post('http://localhost:8082/api/books', newBook
+)
+.then(()=>{
+  const afterAdd = [...this.state.books, newBook]
+  this.setState({books:afterAdd})
+  this.getBooks()
+})
+
 }
 
-editBookHandler = (event) => {
-  event.preventDefault();
+editBookHandler = (title, author, pages, price) => {
 const id = this.state.editingBook.id
-console.log(this.state.title)
-console.log(this.state.editingBook.author)
-
+const newPrice = parseInt(price)
 
 axios.put(`http://localhost:8082/api/books/${id}`, {
-title: this.state.editingBook.title,
-author: this.state.editingBook.author,
-pages: this.state.editingBook.pages,
-price: this.state.editingBook.price
+title: title,
+author: author,
+pages: pages,
+price: newPrice
 }
 )
-this.getBooks()
+.then(() => {
+  this.getBooks()
+})
+
+
 }
   render() {
     return ( <div className="container">
     <div className="row">
     <div className="col-6">
+    <button onClick={this.handleAddButton}>Add Book</button>
       <h2> Please Select A Book </h2> {
         this.state.books.map(ele => {
           return <Book id = {
@@ -127,6 +157,7 @@ this.getBooks()
       <div className="col-3">
       EDIT AND CREATE BAYS
       {this.state.editingBook ? <EditForm book={this.state.editingBook} editBookHandler={this.editBookHandler}/> : null}
+      {this.state.addingBook ? <AddForm book={this.state.addingBook} addBookHandler={this.addBookHandler}/> : null}
       </div>
       <div className="col-3">
       <CheckoutCart cartItems={this.state.cartItems}/>

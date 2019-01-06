@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Book ({id, title, author, pages, price, inCart=false}) {
+function Book ({id, title, author, pages, price, handleEditButton, handleAddToCart, handleRemoveFromCart, handleDelete, inCart=false}) {
 
 return (
 <div>
@@ -10,8 +10,10 @@ return (
     <span>Pages: {pages}</span><br></br>
     <span>Price: {price}</span>
   </p>
-  <button className="addButton" dataid={id}>Add To Cart</button>
-  <button className="removeButton" dataid={id}>Remove From Cart</button>
+  <button className="addButton" onClick={() => handleAddToCart(id)}>Add To Cart</button>
+  <button className="removeButton" onClick={() => handleRemoveFromCart(id)}>Remove From Cart</button>
+  <button className="editButton" onClick={() => handleEditButton(id)}>Edit Book</button>
+  <button className="deleteButton" onClick={() => handleDelete(id)}>Delete Book</button>
 </div>
     )
   }

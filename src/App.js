@@ -4,6 +4,7 @@ import './App.css';
 import NavBar from './navBar'
 import BookList from './bookList'
 import CheckoutCart from './checkoutCart';
+import ReactDOM from 'react-dom'
 
 class App extends Component {
   constructor(props) {

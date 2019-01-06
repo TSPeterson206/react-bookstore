@@ -14,6 +14,7 @@ class CheckoutCart extends Component {
   }
 
   calculateTotal = () => {
+
     const total = this.props.cartItems.map(ele => {
       return parseInt(ele.price)
     })

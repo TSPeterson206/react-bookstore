@@ -13,10 +13,16 @@ class BookList extends Component {
     this.state = {
       books: [],
       cartItems:[],
-      editingBook:null
+      editingBook:null,
+      editingId:'',
+      editedTitle:'',
+      editedAuthor:'',
+      editedPages:'',
+      editedPrice:''
     }
   }
 
+// POPULATING BOOK LIST
   componentDidMount() {
     this.getBooks();
   }
@@ -27,36 +33,13 @@ class BookList extends Component {
         this.setState({
           books: response.data
         })
-        this.addEventListeners()
       })
   }
 
-  addEventListeners = () => {
-    const addToCartButton = document.querySelectorAll('.addButton')
-    // const removeFromCartButton = document.querySelectorAll('.removeButton')
-    // const editButton = document.querySelectorAll('.editButton')
-    // const deleteButton = document.querySelectorAll('.deleteButton')
-
-
-    addToCartButton.forEach(item => {
-      item.addEventListener('click', this.handleAddToCart)
-    })
-    // removeFromCartButton.forEach(item => {
-    //   item.addEventListener('click', this.handleRemoveFromCart)
-    // })
-    // editButton.forEach(item => {
-    //   item.addEventListener('click', this.generateEditForm)
-    //   })
-    // deleteButton.forEach(item => {
-    //   item.addEventListener('click', this.handleDelete)
-    // })
-  }
+// ADD TO CART, REMOVE FROM CART, EDIT FORM AND DELETE FUNCTIONS
 
   handleAddToCart = (id) => {
-    console.log(id)
-    console.log(this.state.books)
-    const book = this.state.books.find(ele => {console.log(ele.id); return ele.id === id})
-    console.log(book)
+    const book = this.state.books.find(ele => {return ele.id === id})
       this.setState({
         cartItems: [...this.state.cartItems, book]
       })
@@ -69,9 +52,9 @@ class BookList extends Component {
     const updatedCart = this.state.cartItems.filter(ele => {
       return ele != newBook}
     )
-      // this.setState({
-      //   cartItems: updatedCart
-      // })
+      this.setState({
+        cartItems: updatedCart
+      })
   }
 
   handleEditButton = (id) => {
@@ -82,35 +65,7 @@ class BookList extends Component {
 
   }
 
-  addBookHandler = () => {
-    // const newBook = {
-    //   title: editTitle.value,
-    //   author: editAuthor.value,
-    //   pages: editPages.value,
-    //   price: editPrice.value
-    // }
-  }
-
-  editBookHandler = (event) => {
-    event.preventDefault();
-const editTitle = document.querySelector('.addTitle')
-const editAuthor = document.querySelector('.addAuthor')
-const editPages = document.querySelector('.addPages')
-const editPrice = document.querySelector('.addPrice')
-
-const id = event.target.getAttribute('dataid')
-axios.put(`http://localhost:8082/api/books/${id}`, {
-  title: editTitle.value,
-  author: editAuthor.value,
-  pages: editPages.value,
-  price: editPrice.value
-}
-)
-}
-
   handleDelete = (id) => {
-    console.log(id)
-    // const id = event.target.getAttribute('dataid')
     const newBook = this.state.books.find(ele => {return ele.id == id})
 const cartAfterDelete = this.state.books.filter(ele => {
   return ele != newBook}
@@ -118,6 +73,29 @@ const cartAfterDelete = this.state.books.filter(ele => {
     axios.delete (`http://localhost:8082/api/books/${id}`)
     .then(() =>{
       this.setState({books:cartAfterDelete})
+    })
+  }
+
+// ADD BOOK AND EDIT BOOK HANDLERS
+
+addBookHandler = () => {
+  
+}
+
+  editBookHandler = (event) => {
+    event.preventDefault();
+console.log()
+// const id = event.target.getAttribute('dataid')
+// axios.put(`http://localhost:8082/api/books/${id}`, {
+  // title: editTitle.value,
+  // author: editAuthor.value,
+  // pages: editPages.value,
+  // price: editPrice.value
+}
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name] : event.target.value
     })
   }
 
@@ -149,6 +127,7 @@ const cartAfterDelete = this.state.books.filter(ele => {
           handleDelete = {this.handleDelete}
           handleRemoveFromCart = {this.handleRemoveFromCart}
           handleAddToCart = {this.handleAddToCart}
+          handleChange={this.handleChange}
           />
         })
       } </div>

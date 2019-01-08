@@ -11,13 +11,11 @@ class EditForm extends Component {
       id:this.props.book.id,
       title:this.props.book.title,
       author:this.props.book.author,
-      pages:this.props.book.pages,
-      price:this.props.book.price
+      pages:this.props.book.pages
     }
   }
 
   handleChange = (event) => {
-    console.log(this.state.title)
     this.setState({
       [event.target.name] : event.target.value
     })
@@ -25,23 +23,21 @@ class EditForm extends Component {
 
   handleSubmit = (event) => {
 event.preventDefault();
-this.props.editBookHandler(this.state.title, this.state.author, this.state.pages, this.state.price)
+this.props.editBookHandler(this.state.title, this.state.author, this.state.pages)
   }
   
 
   render () {
     return (
       <div>
-      <p>Edit {this.props.id} and press submit </p>
-  <form onSubmit={this.handleSubmit}>
+  <form className="editForm" onSubmit={this.handleSubmit}>
+  <p>Edit {this.state.title} and press submit </p>
   <label>Title</label><br></br>
-  <input type="text" onChange={this.handleChange} className="editTitle" name="title" value={this.state.title} placeholder={this.state.title}></input>
+  <input type="text" onChange={this.handleChange} className="editTitle" name="title" value={this.state.title} placeholder={this.state.title}></input><br></br>
   <label>Author</label><br></br>
-  <input type="text" onChange={this.handleChange} className="editAuthor" name="author" value={this.state.author} placeholder={this.props.author}></input>
+  <input type="text" onChange={this.handleChange} className="editAuthor" name="author" value={this.state.author} placeholder={this.props.author}></input><br></br>
   <label>Pages</label><br></br>
-  <input type="text" onChange={this.handleChange} className="editPages"name="pages" value={this.state.pages} placeholder={this.props.pages}></input>
-  <label>Price</label><br></br>
-  <input type="number" onChange={this.handleChange} className="editPrice"name="price" value={this.state.price} placeholder={this.props.price}></input>
+  <input type="text" onChange={this.handleChange} className="editPages"name="pages" value={this.state.pages} placeholder={this.props.pages}></input><br></br>
   <button type="submit" >Submit</button>
 </form>
 </div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './index.css';
 import BookList from './bookList'
 
 class CheckoutCart extends Component {
@@ -24,9 +25,9 @@ class CheckoutCart extends Component {
 render(){
   return(
   <div>
-  <h1>CHECKOUT CART</h1>
-<div>{this.populateCart()}</div>
-<h4>Total: $ <div>{this.calculateTotal()}</div></h4>
+  <h2 className="header">CHECKOUT CART</h2>
+<div className="cartEntry">{this.populateCart()}</div>
+<h5 className="total">Total: ${this.calculateTotal()}</h5>
   </div>
   )
 }

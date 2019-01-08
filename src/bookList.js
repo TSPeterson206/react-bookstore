@@ -15,7 +15,8 @@ class BookList extends Component {
       books: [],
       cartItems:[],
       editingBook:null,
-      addingBook:null
+      addingBook:null, 
+      search:''
     }
   }
 
@@ -36,7 +37,7 @@ class BookList extends Component {
 // ADD TO CART, REMOVE FROM CART, EDIT FORM AND DELETE FUNCTIONS
 
   handleAddToCart = (id) => {
-    const book = this.state.books.find(ele => {return ele.id === id})
+    const book = this.state.books.find(ele => {ele.price = 5; return ele.id === id})
       this.setState({
         cartItems: [...this.state.cartItems, book]
       })
@@ -84,50 +85,79 @@ const cartAfterDelete = this.state.books.filter(ele => {
 
 // ADD BOOK AND EDIT BOOK HANDLERS
 
-addBookHandler = (newTitle, newAuthor, newPages, newPrice) => {
-console.log(newTitle, newAuthor)
-
+addBookHandler = (newTitle, newAuthor, newPages) => {
 const newBook = {
   title: newTitle,
   author: newAuthor,
-  pages: newPages,
-  price: newPrice
+  pages: newPages
   } 
-  console.log(newBook)
-  console.log(this.state.books)
+  newBook.price = 5;
+  console.log(newBook.price)
+  console.log(typeof newBook.price)
 axios.post('http://localhost:8082/api/books', newBook
 )
 .then(()=>{
   const afterAdd = [...this.state.books, newBook]
-  this.setState({books:afterAdd})
+  this.setState({books:afterAdd,
+  addingBook:null})
   this.getBooks()
 })
 
 }
 
-editBookHandler = (title, author, pages, price) => {
+editBookHandler = (title, author, pages) => {
 const id = this.state.editingBook.id
-const newPrice = parseInt(price)
 
 axios.put(`http://localhost:8082/api/books/${id}`, {
 title: title,
 author: author,
-pages: pages,
-price: newPrice
+pages: pages
 }
 )
 .then(() => {
-  this.getBooks()
+  this.getBooks();
+  this.setState({
+    editingBook:null
+  })
 })
-
-
 }
+
+handleChange = (event) => {
+  this.setState({
+    [event.target.name] : event.target.value
+  })
+}
+
+filterTitleOrAuthor = () => {
+const newArray = this.state.books.filter(
+ele => {return ele.author.toLowerCase().includes(this.state.search.toLowerCase())
+  || ele.title.toLowerCase().includes(this.state.search.toLowerCase())
+}
+)
+if (newArray.length > 0){
+this.setState({
+books:newArray
+})} 
+else if (this.state.books.length === 0){this.getBooks()}
+}
+
   render() {
-    return ( <div className="container">
+    return ( <div className="container-fluid">
     <div className="row">
-    <div className="col-6">
+    <div className="col-2 addSearchColumn">
+    <h2 className="searchAndAddHeader">Search and Add</h2>
     <button onClick={this.handleAddButton}>Add Book</button>
-      <h2> Please Select A Book </h2> {
+    <form onChange={this.filterTitleOrAuthor}>
+      <input onChange={this.handleChange} type="text" className="searchBar" placeholder="Search By Title or Author..." name="search" value={this.state.search}></input>
+      {/* <button type="submit">Find</button> */}
+      <button type="button" onClick={this.getBooks}>Reset</button>
+    </form> 
+
+    </div>
+    <div className="col-5">
+      <h2 className="header"> Please Select A Book </h2>
+      <div className="books">
+       {
         this.state.books.map(ele => {
           return <Book id = {
             ele.id
@@ -141,9 +171,7 @@ price: newPrice
           pages = {
             ele.pages
           }
-          price = {
-            ele.price
-          }
+          price = {`$5`}
           inCart = {
             false
           }
@@ -153,13 +181,19 @@ price: newPrice
           handleAddToCart = {this.handleAddToCart}
           />
         })
-      } </div>
-      <div className="col-3">
-      EDIT AND CREATE BAYS
-      {this.state.editingBook ? <EditForm book={this.state.editingBook} editBookHandler={this.editBookHandler}/> : null}
-      {this.state.addingBook ? <AddForm book={this.state.addingBook} addBookHandler={this.addBookHandler}/> : null}
+      } 
       </div>
-      <div className="col-3">
+      </div>
+      <div className="col-2">
+      <h2 className="header">EDIT/CREATE</h2>
+      <div className="row">
+      {this.state.editingBook ? <EditForm book={this.state.editingBook} editBookHandler={this.editBookHandler} closeEditWindow={this.closeEditWindow}/> : null}
+      </div>
+      <div className="row">
+      {this.state.addingBook ? <AddForm book={this.state.addingBook} addBookHandler={this.addBookHandler} closeAddWindow={this.closeAddWindow}/> : null}
+      </div>
+      </div>
+      <div className="col-2">
       <CheckoutCart cartItems={this.state.cartItems}/>
       </div>
       </div>

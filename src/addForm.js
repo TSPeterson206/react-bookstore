@@ -17,7 +17,6 @@ class AddForm extends Component {
   }
 
   handleChange = (event) => {
-    console.log(this.state.title)
     this.setState({
       [event.target.name] : event.target.value
     })
@@ -25,23 +24,21 @@ class AddForm extends Component {
 
   handleSubmit = (event) => {
 event.preventDefault();
-this.props.addBookHandler(this.state.title, this.state.author, this.state.pages, this.state.price)
+this.props.addBookHandler(this.state.title, this.state.author, this.state.pages)
   }
   
 
   render () {
     return (
       <div>
-      <p>Add Book and press submit </p>
-  <form onSubmit={this.handleSubmit}>
+  <form className="addForm" onSubmit={this.handleSubmit}>
+  <p>Add Book and press submit </p>
   <label>Title</label><br></br>
-  <input type="text" onChange={this.handleChange} className="addTitle" name="title" value={this.state.title}></input>
+  <input type="text" onChange={this.handleChange} className="addTitle" name="title" value={this.state.title}></input><br></br>
   <label>Author</label><br></br>
-  <input type="text" onChange={this.handleChange} className="addAuthor" name="author" value={this.state.author}></input>
+  <input type="text" onChange={this.handleChange} className="addAuthor" name="author" value={this.state.author}></input><br></br>
   <label>Pages</label><br></br>
-  <input type="text" onChange={this.handleChange} className="addPages"name="pages" value={this.state.pages}></input>
-  <label>Price</label><br></br>
-  <input type="number" onChange={this.handleChange} className="addPrice"name="price" value={this.state.price}></input>
+  <input type="text" onChange={this.handleChange} className="addPages"name="pages" value={this.state.pages}></input><br></br>
   <button type="submit" >Submit</button>
 </form>
 </div>

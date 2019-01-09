@@ -26,7 +26,7 @@ class BookList extends Component {
   }
 
   getBooks = () => {
-    axios.get('http://localhost:8082/api/books')
+    axios.get(`${process.env.REACT_APP_API_URL}/api/books`)
       .then(response => {
         this.setState({
           books: response.data
@@ -77,7 +77,7 @@ class BookList extends Component {
 const cartAfterDelete = this.state.books.filter(ele => {
   return ele != newBook}
 )
-    axios.delete (`http://localhost:8082/api/books/${id}`)
+    axios.delete (`${process.env.REACT_APP_API_URL}/api/books/${id}`)
     .then(() =>{
       this.setState({books:cartAfterDelete})
     })
@@ -92,7 +92,7 @@ const newBook = {
   pages: newPages
   } 
   newBook.price = 5;
-axios.post('http://localhost:8082/api/books', newBook
+axios.post(`${process.env.REACT_APP_API_URL}/api/books`, newBook
 )
 .then(()=>{
   const afterAdd = [...this.state.books, newBook]
@@ -106,7 +106,7 @@ axios.post('http://localhost:8082/api/books', newBook
 editBookHandler = (title, author, pages) => {
 const id = this.state.editingBook.id
 
-axios.put(`http://localhost:8082/api/books/${id}`, {
+axios.put(`${process.env.REACT_APP_API_URL}/api/books/${id}`, {
 title: title,
 author: author,
 pages: pages

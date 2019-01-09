@@ -92,8 +92,6 @@ const newBook = {
   pages: newPages
   } 
   newBook.price = 5;
-  console.log(newBook.price)
-  console.log(typeof newBook.price)
 axios.post('http://localhost:8082/api/books', newBook
 )
 .then(()=>{
@@ -149,7 +147,6 @@ else if (this.state.books.length === 0){this.getBooks()}
     <button onClick={this.handleAddButton}>Add Book</button>
     <form onChange={this.filterTitleOrAuthor}>
       <input onChange={this.handleChange} type="text" className="searchBar" placeholder="Search By Title or Author..." name="search" value={this.state.search}></input>
-      {/* <button type="submit">Find</button> */}
       <button type="button" onClick={this.getBooks}>Reset</button>
     </form> 
 

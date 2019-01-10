@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
-import './App.css';
+import './index.css';
 import NavBar from './navBar'
 import BookList from './bookList'
 import CheckoutCart from './checkoutCart';

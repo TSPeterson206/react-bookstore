@@ -14,9 +14,8 @@ code {
     monospace;
 }
 
-.navText, .navbar {
+.navbar {
 	text-align:center;
-	display: inline-block;
 	justify-content:center;
 	font-size-adjust: 120px;
 	margin:0 auto;

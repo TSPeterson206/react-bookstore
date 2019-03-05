@@ -1,82 +1,125 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
+	margin: 0;
+	padding: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	background: grey;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
 }
 
 .headerTitle {
-	margin:0 auto;
-	font-size:50px;
-	color:lightgrey;
+	margin: 0 auto;
+	font-size: 50px;
+	font-family:fantasy;
+	color:white;
 }
 
 .nav {
-	background-image: url('https://static.turbosquid.com/Preview/2014/08/01__18_43_57/11_Leather_spines.pngfd3aed1f-7ddf-4b8e-952c-9d17f26cfd08Original.jpg')
-}
-.searchAndAddHeader, .header, .total, .cartEntry, .books {
-  text-align:center;
+	background-image: url('https://static.turbosquid.com/Preview/2014/08/01__18_43_57/11_Leather_spines.pngfd3aed1f-7ddf-4b8e-952c-9d17f26cfd08Original.jpg');
 }
 
-.editForm, .addForm {
-  margin-top:50px;
-	font-size:25px;
-	text-align:center;
+.searchAndAddHeader,
+.header,
+.total,
+.cartEntry,
+.books {
+	text-align: center;
+}
+
+.editForm,
+.addForm {
+	margin-top: 10px;
+	font-size: 25px;
+	text-align: center;
+	border: 1px solid;
+	padding: 10px;
+	background-color:lightgray;
 }
 
 .books {
-	padding-top:8px;
-	padding-bottom:10px;
-	margin-bottom:15px;
+	padding-top: 8px;
+	padding-bottom: 10px;
+	margin-bottom: 15px;
 }
 
 .addSearchColumn {
-	align-content:center;
-	display:inline-block
-}
-.searchBar {
-	text-align:center;
-	width:100%;
-	border:3px solid;
-	border-radius:25px;
+	align-content: center;
+	display: inline-block
 }
 
-.bookButtons{
-	margin-bottom:40px;
+.searchBar {
+	text-align: center;
+	width: 100%;
+	border: 3px solid;
+	border-radius: 25px;
+}
+
+.bookButtons {
+	margin-bottom: 40px;
 }
 
 .bookIcon {
-	margin-left:10px;
-	margin-right:10px;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 .bookInfo {
-	font-size:20px;
+	font-size: 20px;
 }
 
 .searchRow {
-	margin-top:50px;
+	margin-top: 50px;
 }
 
 .addIcon {
-	margin-top:25px;
-	margin-left:15px;
+	margin-top: 25px;
+	margin-left: 15px;
 }
 
 .editAddField {
-	border-radius:25px;
-	text-align:center;
+	border-radius: 25px;
+	text-align: center;
 }
 
 button {
-border-radius:50px;
+	border-radius: 50px;
+}
+
+.formClose {
+	position: relative;
+    z-index: 99;
+    float: right;
+}
+
+.formSubmitIcon {
+	margin-top: 10px;
+}
+
+h2 {
+	font-family:fantasy;
+	font-style:bold;
+}
+
+.container-fluid {
+	margin-top:25px;
+}
+
+.headerRow {
+	height:50%;
+}
+
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
 }

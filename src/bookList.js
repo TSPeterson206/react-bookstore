@@ -55,6 +55,12 @@ class BookList extends Component {
       })
   }
 
+  handleClearCart = () => {
+    this.setState({
+      cartItems:[]
+    })
+  }
+
 
   handleAddButton = (id) => {
     this.setState({
@@ -63,6 +69,17 @@ class BookList extends Component {
 
   }
 
+  closeAddWindow = () => {
+this.setState({
+  addingBook:null
+})
+  }
+
+  closeEditWindow = () => {
+    this.setState({
+      editingBook:null
+    })
+      }
 
   handleEditButton = (id) => {
     const book = this.state.books.find(ele => {return ele.id == id})
@@ -187,16 +204,16 @@ else {this.getBooks();}
       </div>
       </div>
       <div className="col-2">
-      <h2 className="header">EDIT/CREATE</h2>
+      <h2 className="header editHeader">EDIT/ADD</h2>
       <div className="row">
       {this.state.editingBook ? <EditForm book={this.state.editingBook} editBookHandler={this.editBookHandler} closeEditWindow={this.closeEditWindow}/> : null}
       </div>
-      <div className="row">
+      <div className="row headerRow">
       {this.state.addingBook ? <AddForm book={this.state.addingBook} addBookHandler={this.addBookHandler} closeAddWindow={this.closeAddWindow}/> : null}
       </div>
       </div>
       <div className="col-3">
-      <CheckoutCart cartItems={this.state.cartItems}/>
+      <CheckoutCart cartItems={this.state.cartItems} handleClearCart={this.handleClearCart} />
       </div>
       </div>
       </div>

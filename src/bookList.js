@@ -26,7 +26,7 @@ class BookList extends Component {
   }
 
   getBooks = () => {
-    axios.get('http://localhost:8082/api/books')
+    axios.get(`${process.env.REACT_APP_API_URL}/api/books`)
       .then(response => {
         this.setState({
           books: response.data
@@ -77,7 +77,7 @@ class BookList extends Component {
 const cartAfterDelete = this.state.books.filter(ele => {
   return ele != newBook}
 )
-    axios.delete (`http://localhost:8082/api/books/${id}`)
+    axios.delete (`${process.env.REACT_APP_API_URL}/api/books/${id}`)
     .then(() =>{
       this.setState({books:cartAfterDelete})
     })
@@ -85,14 +85,14 @@ const cartAfterDelete = this.state.books.filter(ele => {
 
 // ADD BOOK AND EDIT BOOK HANDLERS
 
-addBookHandler = (newTitle, newAuthor, newPages) => {
+addBookHandler = (newTitle, newAuthor, newPages, newPrice) => {
 const newBook = {
   title: newTitle,
   author: newAuthor,
   pages: newPages
   } 
-  newBook.price = 5;
-axios.post('http://localhost:8082/api/books', newBook
+  newBook.price = newPrice;
+axios.post(`${process.env.REACT_APP_API_URL}/api/books`, newBook
 )
 .then(()=>{
   const afterAdd = [...this.state.books, newBook]
@@ -106,7 +106,7 @@ axios.post('http://localhost:8082/api/books', newBook
 editBookHandler = (title, author, pages) => {
 const id = this.state.editingBook.id
 
-axios.put(`http://localhost:8082/api/books/${id}`, {
+axios.put(`${process.env.REACT_APP_API_URL}/api/books/${id}`, {
 title: title,
 author: author,
 pages: pages
@@ -132,26 +132,31 @@ ele => {return ele.author.toLowerCase().includes(this.state.search.toLowerCase()
   || ele.title.toLowerCase().includes(this.state.search.toLowerCase())
 }
 )
-if (newArray.length > 0){
+if (this.state.search.length >1 && newArray.length > 0){
 this.setState({
 books:newArray
 })} 
-else if (this.state.books.length === 0){this.getBooks()}
+else {this.getBooks();}
 }
 
   render() {
     return ( <div className="container-fluid">
     <div className="row">
-    <div className="col-2 addSearchColumn">
-    <h2 className="searchAndAddHeader">Search and Add</h2>
-    <button onClick={this.handleAddButton}>Add Book</button>
+    <div className="col-1 addSearchColumn">
+    <h2 className="searchAndAddHeader">Add</h2>
+    <img className="addIcon" onClick={this.handleAddButton} src="https://img.icons8.com/ios/100/000000/add-rule.png"></img>
+
+    <div className="row searchRow">
+    <div className="col">
+    <h2 className="searchAndAddHeader">Search</h2>
     <form onChange={this.filterTitleOrAuthor}>
-      <input onChange={this.handleChange} type="text" className="searchBar" placeholder="Search By Title or Author..." name="search" value={this.state.search}></input>
-      <button type="button" onClick={this.getBooks}>Reset</button>
-    </form> 
+      <input onChange={this.handleChange} type="text" className="searchBar" placeholder="Search..." name="search" value={this.state.search}></input>
+    </form>
+    </div>
+    </div> 
 
     </div>
-    <div className="col-5">
+    <div className="col-6">
       <h2 className="header"> Please Select A Book </h2>
       <div className="books">
        {
@@ -190,7 +195,7 @@ else if (this.state.books.length === 0){this.getBooks()}
       {this.state.addingBook ? <AddForm book={this.state.addingBook} addBookHandler={this.addBookHandler} closeAddWindow={this.closeAddWindow}/> : null}
       </div>
       </div>
-      <div className="col-2">
+      <div className="col-3">
       <CheckoutCart cartItems={this.state.cartItems}/>
       </div>
       </div>

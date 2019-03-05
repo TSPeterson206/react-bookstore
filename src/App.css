@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -7,7 +7,7 @@
   height: 40vmin;
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -16,9 +16,9 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
-.App-link {
+/* .App-link {
   color: #61dafb;
 }
 
@@ -31,15 +31,100 @@
   }
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background: grey;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+} */
+
+/* .navbar {
+	text-align:center;
+	justify-content:center;
+	font-size-adjust: 120px;
+	margin:0 auto;
+	background-color: red;
+}
+
+.navbar-brand {
+	text-align:center;
+	font-size:50px;
+}
+
+.searchAndAddHeader, .header, .total, .cartEntry, .books {
+  text-align:center;
+}
+
 .editForm, .addForm {
   margin-top:50px;
   font-size:25px;
 }
 
-
-.navbar-brand {
-  text-align:center;
-  font-size: 80px;
-  /* justify-content:center; */
-  /* margin:0 auto; */
+.books {
+	padding-top:8px;
+	padding-bottom:10px;
+	margin-bottom:15px;
 }
+
+.addSearchColumn {
+	align-content:center;
+	display:inline-block
+}
+.searchBar {
+  padding-top:5px;
+  padding-bottom:5px;
+  text-align:center;
+}
+button {
+	-moz-box-shadow: 3px 4px 0px 0px #899599;
+	-webkit-box-shadow: 3px 4px 0px 0px #899599;
+	box-shadow: 3px 4px 0px 0px #899599;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #bab1ba));
+	background:-moz-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:-webkit-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:-o-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:-ms-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
+	background-color:#ededed;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:#0e2e36;
+	font-family:Arial;
+	font-size:17px; */
+	
+	/* text-decoration:none;
+  text-shadow:0px 1px 0px #e1e2ed;
+	padding-top:3px;
+	padding:7px 25px;
+	padding-bottom:10px;
+	margin-bottom:15px;
+	margin-top:15px;
+}
+button:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bab1ba), color-stop(1, #ededed));
+	background:-moz-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:-webkit-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:-o-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:-ms-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
+	background-color:#bab1ba;
+}
+button:active {
+	position:relative;
+	top:1px;
+}  */

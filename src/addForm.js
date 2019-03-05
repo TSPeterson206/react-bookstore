@@ -1,7 +1,7 @@
 import React, {
   Component
 } from 'react';
-import './index.css';
+// import './index.css';
 
 class AddForm extends Component {
   constructor (props) {
@@ -12,7 +12,8 @@ class AddForm extends Component {
       title:'',
       author:'',
       pages:'',
-      price:''
+      price:'',
+      book:this.props.book
     }
   }
 
@@ -24,23 +25,27 @@ class AddForm extends Component {
 
   handleSubmit = (event) => {
 event.preventDefault();
-this.props.addBookHandler(this.state.title, this.state.author, this.state.pages)
+this.props.addBookHandler(this.state.title, this.state.author, this.state.pages, this.state.price)
+    this.setState({
+      book:''
+    })
   }
   
 
   render () {
     return (
       <div>
-  <form className="addForm" onSubmit={this.handleSubmit}>
-  <p>Add Book and press submit </p>
+  {this.props.book ? <form className="addForm">
+  <p>Add Book</p>
   <label>Title</label><br></br>
-  <input type="text" onChange={this.handleChange} className="addTitle" name="title" value={this.state.title}></input><br></br>
+  <input type="text" onChange={this.handleChange} className="addTitle editAddField" name="title" value={this.state.title}></input><br></br>
   <label>Author</label><br></br>
-  <input type="text" onChange={this.handleChange} className="addAuthor" name="author" value={this.state.author}></input><br></br>
+  <input type="text" onChange={this.handleChange} className="addAuthor editAddField" name="author" value={this.state.author}></input><br></br>
   <label>Pages</label><br></br>
-  <input type="text" onChange={this.handleChange} className="addPages"name="pages" value={this.state.pages}></input><br></br>
-  <button type="submit" >Submit</button>
-</form>
+  <input type="text" onChange={this.handleChange} className="addPages editAddField" name="pages" value={this.state.pages}></input><br></br>
+  <img onClick={this.handleSubmit}src="https://img.icons8.com/wired/64/000000/submit-progress.png"/>
+  
+</form> : null}
 </div>
     )
   }

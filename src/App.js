@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import './index.css';
-import NavBar from './navBar'
+import Navigation from './Navbar'
 import BookList from './bookList'
 import CheckoutCart from './checkoutCart';
 import ReactDOM from 'react-dom'
@@ -17,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <div>
-      <NavBar />
+      <Navigation />
       <BookList />
       </div>
     );

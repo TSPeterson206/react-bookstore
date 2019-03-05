@@ -5,10 +5,10 @@ function Book ({id, title, author, pages, price, handleEditButton, handleAddToCa
 return (
 <div>
   <p className="bookInfo">
-    <span>Title: {title}</span><br></br>
-    <span>Author: {author}</span><br></br>
-    <span>Pages: {pages}</span><br></br>
-    <span>Price: {price}</span>
+    <span><strong>Title:</strong> {title}</span><br></br>
+    <span><strong>Author:</strong> {author}</span><br></br>
+    <span><strong>Pages:</strong> {pages}</span><br></br>
+    <span><strong>Price:</strong> {price}</span>
   </p>
   <div className="bookButtons">
   <img className="bookIcon" title="Add to Cart" onClick={() => handleAddToCart(id)} src="https://img.icons8.com/wired/64/000000/plus.png"></img>

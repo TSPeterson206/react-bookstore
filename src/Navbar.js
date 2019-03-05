@@ -4,17 +4,6 @@ import { Navbar } from 'reactstrap';
 class Navigation extends Component {
   constructor(props) {
     super(props) 
-
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
-  }
-  
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
   }
 
   render () {
@@ -26,8 +15,8 @@ class Navigation extends Component {
         </div>
         </Navbar>
       </div>
-  )
-}
+    )
+  }
 }
 
 export default Navigation

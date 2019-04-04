@@ -36,11 +36,12 @@ code {
 .editForm,
 .addForm {
 	margin-top: 10px;
-	font-size: 25px;
+	font-size: 15px;
 	text-align: center;
 	border: 1px solid;
 	padding: 10px;
 	background-color:lightgray;
+	width:100%;
 }
 
 .books {
@@ -74,13 +75,13 @@ code {
 	font-size: 20px;
 }
 
-.searchRow {
-	margin-top: 50px;
-}
-
 .addIcon {
-	margin-top: 25px;
-	margin-left: 15px;
+	margin-top: 50px;
+	margin-left: 50%;
+	/* justify-content:center;
+	align-content:center; */
+	display:flex;
+	margin: 0 auto;
 }
 
 .editAddField {
@@ -107,12 +108,8 @@ h2 {
 	font-style:bold;
 }
 
-.container-fluid {
+.container-flex {
 	margin-top:25px;
-}
-
-.headerRow {
-	height:50%;
 }
 
 hr {
@@ -122,4 +119,22 @@ hr {
 	border-top: 1px solid #ccc;
 	margin: 1em 0;
 	padding: 0;
+}
+
+.content {
+	/* display: flex; */
+  justify-content: center;
+	align-items: center;
+	/* margin:0 auto; */
+}
+@media only screen and (min-width: 350px)  and (max-width:1000px) {
+	.col-1 {width:100%;
+	background-color:grey;}
+	.col-6{
+	background-color: green;
+width:100%;
+flex:25%}
+	.row {
+    flex-direction: column;
+  }
 }

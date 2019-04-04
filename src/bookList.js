@@ -64,7 +64,8 @@ class BookList extends Component {
 
   handleAddButton = (id) => {
     this.setState({
-      addingBook:{}
+      addingBook:{},
+      editingBook:null
     })
 
   }
@@ -84,7 +85,8 @@ this.setState({
   handleEditButton = (id) => {
     const book = this.state.books.find(ele => {return ele.id == id})
     this.setState({
-      editingBook:book
+      editingBook:book,
+      addingBook:null
     })
 
   }

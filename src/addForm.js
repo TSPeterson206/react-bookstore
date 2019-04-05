@@ -41,7 +41,7 @@ this.props.addBookHandler(this.state.title, this.state.author, this.state.pages,
       <div>
   {this.state.book ? <form className="addForm">
   <div>
-  <a onClick={this.props.closeAddWindow}><img className="formClose"  src="https://img.icons8.com/wired/24/000000/cancel.png"/></a><br></br>
+  <span onClick={this.props.closeAddWindow}><img className="formClose"  alt='formCloseImage' src="https://img.icons8.com/wired/24/000000/cancel.png"/></span><br></br>
   <span><strong>Add Book</strong></span>
   </div>
   <label>Title</label><br></br>
@@ -50,7 +50,7 @@ this.props.addBookHandler(this.state.title, this.state.author, this.state.pages,
   <input type="text" onChange={this.handleChange} className="addAuthor editAddField" name="author" value={this.state.author} required></input><br></br>
   <label>Pages</label><br></br>
   <input type="text" onChange={this.handleChange} className="addPages editAddField" name="pages" value={this.state.pages} required></input><br></br>
-  <img className="formSubmitIcon" onClick={this.handleSubmit}src="https://img.icons8.com/wired/64/000000/submit-progress.png"/>
+  <img className="formSubmitIcon" alt='formSubmitImage' onClick={this.handleSubmit}src="https://img.icons8.com/wired/64/000000/submit-progress.png"/>
 </form> : null}
 </div>
     )

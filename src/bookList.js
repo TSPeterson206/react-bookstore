@@ -44,7 +44,7 @@ class BookList extends Component {
   }
 
   handleRemoveFromCart = (id) => {
-    const newBook = this.state.books.find(ele => {return ele.id == id})
+    const newBook = this.state.books.find(ele => {return ele.id === id})
     const index = this.state.cartItems.indexOf(newBook)
     if(index === -1) {return}
     const updatedCart = this.state.cartItems.filter(ele => {
@@ -83,7 +83,7 @@ this.setState({
       }
 
   handleEditButton = (id) => {
-    const book = this.state.books.find(ele => {return ele.id == id})
+    const book = this.state.books.find(ele => {return ele.id === id})
     this.setState({
       editingBook:book,
       addingBook:null

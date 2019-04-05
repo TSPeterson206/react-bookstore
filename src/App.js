@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import './index.css';
 import Navigation from './Navbar'
-import BookList from './bookList'
 import CheckoutCart from './checkoutCart';
-import ReactDOM from 'react-dom'
-import './index.css';
 import axios from 'axios';
 import Book from './book'
 import EditForm from './editForm'
@@ -45,11 +42,11 @@ class App extends Component {
   }
 
   handleRemoveFromCart = (id) => {
-    const newBook = this.state.books.find(ele => {return ele.id == id})
+    const newBook = this.state.books.find(ele => {return ele.id === id})
     const index = this.state.cartItems.indexOf(newBook)
     if(index === -1) {return}
     const updatedCart = this.state.cartItems.filter(ele => {
-      return ele != newBook}
+      return ele !== newBook}
     )
       this.setState({
         cartItems: updatedCart
@@ -84,7 +81,7 @@ this.setState({
       }
 
   handleEditButton = (id) => {
-    const book = this.state.books.find(ele => {return ele.id == id})
+    const book = this.state.books.find(ele => {return ele.id === id})
     this.setState({
       editingBook:book,
       addingBook:null
@@ -93,9 +90,9 @@ this.setState({
   }
 
   handleDelete = (id) => {
-    const newBook = this.state.books.find(ele => {return ele.id == id})
+    const newBook = this.state.books.find(ele => {return ele.id === id})
 const cartAfterDelete = this.state.books.filter(ele => {
-  return ele != newBook}
+  return ele !== newBook}
 )
     axios.delete (`${process.env.REACT_APP_API_URL}/api/books/${id}`)
     .then(() =>{
@@ -167,9 +164,9 @@ else {this.getBooks();}
     <div className="col-lg-2 addSearchColumn">
     <div className="content">
     <h2 className="searchAndAddHeader">Add</h2>
-    <img className="addIcon" onClick={this.handleAddButton} src="https://img.icons8.com/ios/100/000000/add-rule.png"></img>
+    <img className="addIcon" alt='addIconImage' onClick={this.handleAddButton} src="https://img.icons8.com/ios/100/000000/add-rule.png"></img>
     <h2 className="searchAndAddHeader">Search</h2>
-    <form onChange={this.filterTitleOrAuthor}>
+    <form onChange={this.filterTitleOrAuthor} className='searchBarForm'>
       <input onChange={this.handleChange} type="text" className="searchBar" placeholder="Search..." name="search" value={this.state.search}></input>
     </form>
 </div>
@@ -179,7 +176,12 @@ else {this.getBooks();}
       <div className="books">
        {
         this.state.books.map(ele => {
-          return <Book id = {
+          return <Book 
+          key = {
+            ele.id
+          }
+          
+          id = {
             ele.id
           }
           title = {
@@ -210,7 +212,7 @@ else {this.getBooks();}
       {this.state.addingBook ? <AddForm book={this.state.addingBook} addBookHandler={this.addBookHandler} closeAddWindow={this.closeAddWindow}/> : null}
       </div>
       <div className="col-lg-3">
-      <CheckoutCart cartItems={this.state.cartItems} handleClearCart={this.handleClearCart} />
+      <CheckoutCart key={this.state.cartItems.id} cartItems={this.state.cartItems} handleClearCart={this.handleClearCart} />
       </div>
       </div>
       </div>

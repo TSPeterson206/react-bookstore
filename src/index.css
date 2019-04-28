@@ -65,9 +65,6 @@ code {
 }
 
 .searchBarForm {
-	/* justify-content:center;
-	margin:0 auto;
-	align-content:center; */
 	display:flex;
 }
 
@@ -87,8 +84,6 @@ code {
 .addIcon {
 	margin-top: 50px;
 	margin-left: 50%;
-	/* justify-content:center;
-	align-content:center; */
 	display:flex;
 	margin: 0 auto;
 }
@@ -131,10 +126,8 @@ hr {
 }
 
 .content {
-	/* display: flex; */
   justify-content: center;
 	align-items: center;
-	/* margin:0 auto; */
 }
 @media only screen and (min-width: 350px)  and (max-width:1000px) {
 	.col-1 {width:100%;

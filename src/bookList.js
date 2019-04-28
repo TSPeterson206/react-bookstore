@@ -163,7 +163,7 @@ else {this.getBooks();}
     <div className="row">
     <div className="col-1 addSearchColumn">
     <h2 className="searchAndAddHeader">Add</h2>
-    <img className="addIcon" onClick={this.handleAddButton} src="https://img.icons8.com/ios/100/000000/add-rule.png"></img>
+    <img className="addIcon" onClick={this.handleAddButton} alt="addIconImage" src="https://img.icons8.com/ios/100/000000/add-rule.png"></img>
 
     <div className="row searchRow">
     <div className="col">
